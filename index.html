@@ -20,7 +20,7 @@
         margin-top: 30px;
       }
        img {
-        width: 100%;
+        width: 50%;
         height: auto;
         border: 10px solid darkblue;
         border-radius: 30px;
@@ -39,13 +39,20 @@
           margin: 10px;
         }
         img {
-          width: 50;
+          width: 25%;
         }
     </style>
   </head>
   <body>
-    <h1>Don't fuck with me!</h1>
-    <button onclick="alert('You dumbass!')">Don't click me</button>
+    <h1>My Blog</h1>
+    <button id="toggle-menu">Open Menu</button>
+    <nav id="menu" style="display: none;">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
     <p>or you will get in trouble</p>
     <img src="image.jpeg" alt="My Image">
   </body>
