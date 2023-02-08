@@ -55,5 +55,19 @@
     </nav>
     <p>or you will get in trouble</p>
     <img src="image.jpeg" alt="My Image">
+    
+    @ the function of the button
+    <script>
+      const toggleButton = document.querySelector("#toggle-menu");
+      const menu = document.querySelector("#menu");
+      
+      toggleButton.addEventListener("click", function() {
+        if (menu.style.display === "none") {
+          menu.style.display = "block";
+        } else {
+          menu.style.display = "none";
+        }
+      });
+    </script>
   </body>
 </html>
