@@ -3,44 +3,7 @@
   <head>
     <title>Ignas Blog</title>
     <style>
-      body {
-        background-color: rgb(235, 231, 231);
-        text-align: center;
-        font-size: 54px;
-        font-family: Arial, sans-serif;
-      }
-
-      h1 {
-        color: darkblue;
-      }
-
-      p {
-        color: rgb(0, 0, 0);
-        font-size: 36px;
-        margin-top: 30px;
-      }
-       img {
-        width: 50%;
-        height: auto;
-        border: 10px solid darkblue;
-        border-radius: 30px;
-        margin: auto;
-      }
-      
-      /* Add the media query */
-      @media only screen and (max-width: 600px) {
-        body {
-          font-size: 1.2em;
-        }
-        h1 {
-          margin-top: 20px;
-        }
-        p {
-          margin: 10px;
-        }
-        img {
-          width: 25%;
-        }
+      /* ... your existing styles ... */
     </style>
   </head>
   <body>
@@ -56,9 +19,21 @@
     <p>or you will get in trouble</p>
     <img src="image.jpeg" alt="My Image">
     
+    <!-- Input form for the two numbers -->
+    <form id="sum-form">
+      <input type="text" id="num1" name="num1"> + 
+      <input type="text" id="num2" name="num2"> = 
+      <button type="submit">Calculate</button>
+    </form>
+
+    <!-- Placeholder for the result -->
+    <p id="result"></p>
+    
     <script>
       const toggleButton = document.querySelector("#toggle-menu");
       const menu = document.querySelector("#menu");
+      const form = document.querySelector("#sum-form");
+      const result = document.querySelector("#result");
       
       toggleButton.addEventListener("click", function() {
         if (menu.style.display === "none") {
@@ -66,6 +41,24 @@
         } else {
           menu.style.display = "none";
         }
+      });
+      
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const num1 = document.querySelector("#num1").value;
+        const num2 = document.querySelector("#num2").value;
+        
+        fetch("/sum", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ num1: num1, num2: num2 })
+        })
+        .then(response => response.json())
+        .then(data => {
+          result.innerHTML = `The sum of ${num1} and ${num2} is ${data.sum}`;
+        });
       });
     </script>
   </body>
